@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Cut — Graphtec CE6000-60 Plus</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>QR Cut — CE6000-60 Plus</h1>
+  <p class="tagline">Create a safe GP-GL QR cut file with a built-in small test square.</p>
+</header>
+
+<main class="grid">
+<section class="panel controls">
+  <label for="qr-text">Content to encode</label>
+  <input type="text" id="qr-text" value="https://lokaalhub.com" placeholder="URL or text">
+
+  <div class="row">
+    <div class="field">
+      <label for="target-size">Finished QR size</label>
+      <div class="size-input">
+        <input type="number" id="target-size" value="6" min="0.5" step="0.25">
+        <select id="target-unit"><option value="in" selected>in</option><option value="mm">mm</option></select>
+      </div>
+    </div>
+    <div class="field">
+      <label for="ec-level">Error correction</label>
+      <select id="ec-level">
+        <option value="L">L — low</option>
+        <option value="M" selected>M — medium</option>
+        <option value="Q">Q — quartile</option>
+        <option value="H">H — high</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="field">
+      <label for="steps-per-mm">GP-GL steps/mm</label>
+      <input type="number" id="steps-per-mm" value="40" min="1" step="1">
+      <p class="hint">Your cutter is 1016 point/in = 40 steps/mm.</p>
+    </div>
+    <div class="field">
+      <label for="quiet-zone">Quiet zone (modules)</label>
+      <input type="number" id="quiet-zone" value="4" min="0" step="1">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="field">
+      <label for="media-width">Vinyl width</label>
+      <div class="size-input">
+        <input type="number" id="media-width" value="12" min="1" step="0.25">
+        <select id="media-unit"><option value="in" selected>in</option><option value="mm">mm</option></select>
+      </div>
+      <p class="hint">Enter the actual vinyl width so the app can prevent off-scale jobs.</p>
+    </div>
+    <div class="field">
+      <label for="margin">Safe margin</label>
+      <div class="size-input">
+        <input type="number" id="margin" value="10" min="1" step="1">
+        <span class="unit-label">mm</span>
+      </div>
+      <p class="hint">The QR starts this far inside the usable area.</p>
+    </div>
+  </div>
+
+  <button id="generate-btn">Generate QR File</button>
+  <button id="test-btn" class="secondary">Create 1-inch Test Square</button>
+
+  <div id="warning" class="warning" hidden></div>
+  <div id="stats" class="stats"></div>
+</section>
+
+<section class="panel preview">
+  <h2>Preview</h2>
+  <canvas id="qr-canvas"></canvas>
+  <div id="download-area" class="download-area"></div>
+</section>
+</main>
+
+<section class="panel notes">
+<h2>First test</h2>
+<p>Use <strong>Create 1-inch Test Square</strong> first. It intentionally uses positive coordinates only and leaves a 10 mm safety margin. If that square cuts correctly, then test a small QR before using a 6-inch QR.</p>
+<p>Do not change your CE6000 GP-GL step size. Your photographed setting is <strong>1016 point/inch = 40 steps/mm</strong>.</p>
+</section>
+
+<footer><p>QR Cut v2 — CE6000-60 Plus safe-coordinate test build.</p></footer>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
