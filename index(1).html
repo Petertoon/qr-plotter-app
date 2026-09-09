@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>QR Cutter — Graphtec Studio 2</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>QR Cutter — Graphtec Studio 2</h1>
+    <p>CE6000 Plus workflow: create a physical-size SVG, open it in Graphtec Studio 2, and cut from there.</p>
+  </header>
+
+  <main class="grid">
+    <section class="panel">
+      <h2>QR Settings</h2>
+
+      <label for="qr-text">URL or text</label>
+      <input id="qr-text" value="https://lokaalhub.com" placeholder="Enter URL or text">
+
+      <div class="row">
+        <div>
+          <label for="size">QR finished size</label>
+          <input id="size" type="number" min="0.5" step="0.25" value="2">
+        </div>
+        <div>
+          <label for="unit">Unit</label>
+          <select id="unit">
+            <option value="in" selected>inches</option>
+            <option value="mm">millimeters</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="ec">Error correction</label>
+          <select id="ec">
+            <option value="L">L — Low</option>
+            <option value="M" selected>M — Medium</option>
+            <option value="Q">Q — Quartile</option>
+            <option value="H">H — High</option>
+          </select>
+        </div>
+        <div>
+          <label for="quiet">Quiet zone (modules)</label>
+          <input id="quiet" type="number" min="0" step="1" value="4">
+        </div>
+      </div>
+
+      <label for="margin">Page margin (mm)</label>
+      <input id="margin" type="number" min="0" step="1" value="10">
+
+      <button id="generate">Generate SVG for Graphtec Studio 2</button>
+      <button id="test" class="secondary">Create 1-inch Test Square</button>
+
+      <div id="warning" class="warning" hidden></div>
+      <div id="stats" class="stats"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Preview</h2>
+      <canvas id="preview" width="500" height="500"></canvas>
+      <div id="downloads"></div>
+    </section>
+  </main>
+
+  <section class="panel">
+    <h2>How to cut</h2>
+    <ol>
+      <li>Generate the SVG here.</li>
+      <li>Download the SVG.</li>
+      <li>Open/import the SVG in <strong>Graphtec Studio 2</strong>.</li>
+      <li>Select your <strong>CE6000 Plus / CE6000-60</strong>.</li>
+      <li>Check the displayed physical size before cutting.</li>
+      <li>Send the job from Graphtec Studio 2.</li>
+    </ol>
+    <p><strong>This version has no direct printer output, no PowerShell sender, and no GP-GL download.</strong></p>
+  </section>
+
+  <footer><p>QR Cutter — clean Graphtec Studio 2 edition.</p></footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
